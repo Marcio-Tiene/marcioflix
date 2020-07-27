@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from '../../assets/img/logo.png'
+import Logo from '../../assets/img/Logo.png'
 import './menu.css'
 import Button from '../Button'
 
@@ -7,12 +7,12 @@ import Button from '../Button'
 function Menu() {
     return (
 
-        <nav className= 'menu'>
-            <a>
-                <img className= 'logo' src={logo} alt="marcioflix logo" />
+        <nav className= 'Menu'>
+            <a href = "/">
+                <img className= 'Logo' src={Logo} alt="marcioflix logo" />
             </a>
-
-           <Button as="a" className="buttonLink" href="/">
+        
+           <Button as="a" className="buttonLink" href= "/" >
                Novo Vídeo
            </Button>
         </nav>
