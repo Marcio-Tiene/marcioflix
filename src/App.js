@@ -5,7 +5,8 @@ function App() {
   return (
 
 
-    <div>
+    <div style= {{ background: "#141414",
+    color: "#ffffff"}}>
       <Menu />
       <h1>Ahahahah</h1>
       <h4>Ãhâ</h4>
