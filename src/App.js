@@ -1,11 +1,15 @@
 import React from 'react';
-import './App.css';
+import Menu from './components/menu'
 
 function App() {
   return (
-   <div>
-  <h1>ahahahah</h1>aha
-   </div>
+
+
+    <div>
+      <Menu />
+      <h1>Ahahahah</h1>
+      <h4>Ãhâ</h4>
+    </div>
   );
 }
 
