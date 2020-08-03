@@ -5,13 +5,15 @@ import Logo from '../../assets/img/Logo.png'
 function Footer() {
   return (
     <FooterBase>
-      <a target='_blank' href="https://github.com/Marcio-Tiene">
+      
+      <a  target='_blank' rel="noopener noreferrer" href="https://github.com/Marcio-Tiene">
         <img className='Logo' src={Logo} alt="marcioflix logo" />
       </a>
       <p>
         Orgulhosamente criado durante a
         {' '}
-        <a target='_blank' href="https://www.alura.com.br/">
+        
+        <a target='_blank' rel="noopener noreferrer" href="https://www.alura.com.br/">
           Imersão React da Alura
         </a>
       </p>
