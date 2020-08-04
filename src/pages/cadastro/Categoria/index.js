@@ -34,28 +34,33 @@ function CadastroCategoria() {
         onSubmit={ValuesSubmitHandler}>
 
         <FormField
-          label='Nome'
           type='text'
           name='name'
           value={values.name}
           onChange={ValueHandler}
-        />
+        >
+          Nome:
+        </FormField>
 
         <FormField
-          label='Descrição'
           type='text'
           name='description'
           value={values.description}
           onChange={ValueHandler}
-        />
-
+        >
+          Descrição:
+        </FormField>
+        
         <FormField
-          label='Cor'
           type='color'
           name='color'
           value={values.color}
           onChange={ValueHandler}
-        />
+        >
+          Cor:
+        </FormField>
+
+
 
 
 
