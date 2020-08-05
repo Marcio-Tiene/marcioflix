@@ -30,7 +30,7 @@ function CadastroCategoria() {
     // colocar a url do hiroko aqui
     const URL = window.location.href.includes('localhost')
       ? 'http://localhost:8080/categorias'
-      : 'http herokuapp';
+      : 'https://marciotflix.herokuapp.com/categorias';
     fetch(URL).then(async (respostaDoServer) => {
       const resposta = await respostaDoServer.json();
       setCategorias([...resposta]);
