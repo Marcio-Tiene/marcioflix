@@ -5,37 +5,36 @@ import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 
 function CadastroCategoria() {
-
-  const [values, setValues] = useState({ name: '', description: '', color: '#000000' })
-  const [categorias, setCategorias] = useState([])
-
+  const [values, setValues] = useState({
+    name: '',
+    description: '',
+    color: '#000000',
+  });
+  const [categorias, setCategorias] = useState([]);
 
   function ValueHandler(event) {
     setValues({
       ...values,
-      [event.target.getAttribute('name')]: event.target.value
-    })
+      [event.target.getAttribute('name')]: event.target.value,
+    });
   }
 
   function ValuesSubmitHandler(event) {
     event.preventDefault();
-    setCategorias([...categorias,
-      values])
-    setValues({ name: '', description: '', color: '#000000' })
-
+    setCategorias([...categorias, values]);
+    setValues({ name: '', description: '', color: '#000000' });
   }
-
 
   return (
     <PageDefault>
-      <h1>Cadastro de Categoria: {values.name} {values.description} {values.color}</h1>
+      <h1>
+        Cadastro de Categoria: {values.name} {values.description} {values.color}
+      </h1>
 
-      <form
-        onSubmit={ValuesSubmitHandler}>
-
+      <form onSubmit={ValuesSubmitHandler}>
         <FormField
-          type='text'
-          name='name'
+          type="text"
+          name="name"
           value={values.name}
           onChange={ValueHandler}
         >
@@ -43,47 +42,39 @@ function CadastroCategoria() {
         </FormField>
 
         <FormField
-          type='text'
-          name='description'
+          type="text"
+          name="description"
           value={values.description}
           onChange={ValueHandler}
         >
           Descrição:
         </FormField>
-        
+
         <FormField
-          type='color'
-          name='color'
+          type="color"
+          name="color"
           value={values.color}
           onChange={ValueHandler}
         >
           Cor:
         </FormField>
 
-
-
-
-
-        <button>
-          Cadastrar
-        </button>
+        <button>Cadastrar</button>
       </form>
 
       <ul>
         {categorias.map((values, indice) => {
           return (
             <li key={`${values.name}${indice}`}>
-              {values.name}  {values.description}  {values.color}
+              {values.name} {values.description} {values.color}
             </li>
-          )
+          );
         })}
       </ul>
 
-      <Link to="/">
-        Ir para home
-      </Link>
+      <Link to="/">Ir para home</Link>
     </PageDefault>
-  )
+  );
 }
 
 export default CadastroCategoria;
