@@ -1,20 +1,26 @@
 import React from 'react';
-import Logo from '../../assets/img/Logo.png';
-import './index.css';
-import Button from '../Button';
 import { Link } from 'react-router-dom';
 
-function Menu() {
+import Logo from '../../assets/img/Logo.png';
+import './index.css';
+import styled from 'styled-components';
+
+function Menu({ children }) {
+  const Nav = children
+    ? styled.nav`
+        justify-content: space-between;
+      `
+    : styled.nav`
+        justify-content: center;
+      `;
   return (
-    <nav className="Menu">
+    <Nav className="Menu">
       <Link to="/">
         <img className="Logo" src={Logo} alt="marcioflix logo" />
       </Link>
 
-      <Button as={Link} className="buttonLink" to="/cadastro/Video">
-        Novo Vídeo
-      </Button>
-    </nav>
+      {children}
+    </Nav>
   );
 }
 

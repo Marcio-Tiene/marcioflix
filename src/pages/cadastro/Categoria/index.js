@@ -2,27 +2,18 @@ import React, { useState, useEffect } from 'react';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
+import useForm from '../../../hooks/useForm';
 
 function CadastroCategoria() {
   const InitialValues = {
-    nome: '',
+    titulo: '',
     descricao: '',
     cor: '#000000',
   };
+
+  const { values, handleChange, clearForm } = useForm(InitialValues);
+
   const [categorias, setCategorias] = useState([]);
-  const [values, setValues] = useState(InitialValues);
-
-  function setValue(key, value) {
-    // key: nome, descricao, bla, bli
-    setValues({
-      ...values,
-      [key]: value, // nome: 'value'
-    });
-  }
-
-  function handleChange(event) {
-    setValue(event.target.getAttribute('name'), event.target.value);
-  }
 
   // ============
 
@@ -39,7 +30,7 @@ function CadastroCategoria() {
 
   return (
     <PageDefault>
-      <h1>Cadastro de Categoria: {values.nome}</h1>
+      <h1>Cadastro de Categoria: {values.titulo}</h1>
 
       <form
         onSubmit={function handleSubmit(event) {
@@ -47,20 +38,20 @@ function CadastroCategoria() {
 
           setCategorias([...categorias, values]);
 
-          setValues(InitialValues);
+          clearForm();
         }}
       >
         <FormField
           label="Nome da Categoria"
           type="text"
-          name="nome"
-          value={values.nome}
+          name="titulo"
+          value={values.titulo}
           onChange={handleChange}
         />
 
         <FormField
           label="Descrição"
-          type="????"
+          type="textarea"
           name="descricao"
           value={values.descricao}
           onChange={handleChange}
