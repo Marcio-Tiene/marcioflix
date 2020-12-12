@@ -10,22 +10,25 @@ import Menu from '../../components/Menu';
 function Home() {
   const [dadosIniciais, setDadosIniciais] = useState([]);
   useEffect(() => {
-    categoriasRepository
-      .getAllWithVideos()
-      .then((categoriasComVideos) => {
-        setDadosIniciais(categoriasComVideos);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, []);
+    async function LoadAll() {
+      try {
+        const response = await categoriasRepository.getAllWithVideos();
 
+        setDadosIniciais(response);
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+
+    LoadAll();
+  }, []);
+  console.log(dadosIniciais);
   return (
     <PageDefault paddingAll={0}>
       <Menu>
-        {/* <Button as={Link} className="buttonLink" to="/cadastro/Video">
+        <Button as={Link} className="buttonLink" to="/cadastro/Video">
           Novo Vídeo
-        </Button> */}
+        </Button>
       </Menu>
       {dadosIniciais.length === 0 && <div>Loading...</div>}
 
@@ -45,7 +48,9 @@ function Home() {
             </div>
           );
         }
-        return <Carousel key={categoria.id} category={categoria} />;
+        return (
+          <Carousel key={categoria.id + categoria.name} category={categoria} />
+        );
       })}
     </PageDefault>
   );

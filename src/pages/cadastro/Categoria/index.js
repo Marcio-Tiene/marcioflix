@@ -3,6 +3,7 @@ import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 import useForm from '../../../hooks/useForm';
+import categoriasRepository from '../../../repositories/categorias';
 
 function CadastroCategoria() {
   const InitialValues = {
@@ -19,13 +20,16 @@ function CadastroCategoria() {
 
   useEffect(() => {
     // colocar a url do hiroko aqui
-    const URL = window.location.href.includes('localhost')
-      ? 'http://localhost:8080/categorias'
-      : 'https://marciotflix.herokuapp.com/categorias';
-    fetch(URL).then(async (respostaDoServer) => {
-      const resposta = await respostaDoServer.json();
-      setCategorias([...resposta]);
-    });
+    // const URL = window.location.href.includes('localhost')
+    //   ? 'http://localhost:8080/categorias'
+    //   : `https://marciotflix.herokuapp.com/categorias`;
+
+    fetch(`https://marciotflix.herokuapp.com/categorias`).then(
+      async (respostaDoServer) => {
+        const resposta = await respostaDoServer.json();
+        setCategorias([...resposta]);
+      }
+    );
   }, []);
 
   return (
@@ -33,10 +37,9 @@ function CadastroCategoria() {
       <h1>Cadastro de Categoria: {values.titulo}</h1>
 
       <form
-        onSubmit={function handleSubmit(event) {
+        onSubmit={async function handleSubmit(event) {
           event.preventDefault();
-
-          setCategorias([...categorias, values]);
+          await categoriasRepository.create(values);
 
           clearForm();
         }}

@@ -7,22 +7,17 @@ import Home from './pages/Home';
 import CadastroVideo from './pages/cadastro/Video';
 import CadastroCategoria from './pages/cadastro/Categoria';
 import Error404 from './pages/Error404';
-import Admin from './pages/Admin';
-import { AuthContext } from './context/auth';
-import PrivateRoute from './PrivateRoute';
 
 ReactDOM.render(
-  <AuthContext.Provider value={false}>
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" component={Home} exact />
-        <Route path="/cadastro/Video" component={CadastroVideo} exact />
-        <Route path="/cadastro/Categoria" component={CadastroCategoria} exact />
-        <PrivateRoute path="/admin" component={Admin} />
-        <Route component={Error404} />
-      </Switch>
-    </BrowserRouter>
-  </AuthContext.Provider>,
+  <BrowserRouter>
+    <Switch>
+      <Route path="/" component={Home} exact />
+      <Route path="/cadastro/Video" component={CadastroVideo} exact />
+      <Route path="/cadastro/Categoria" component={CadastroCategoria} exact />
+
+      <Route component={Error404} />
+    </Switch>
+  </BrowserRouter>,
 
   document.getElementById('root')
 );
