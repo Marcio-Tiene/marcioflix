@@ -4,6 +4,8 @@ import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 import useForm from '../../../hooks/useForm';
 import categoriasRepository from '../../../repositories/categorias';
+import { Link } from 'react-router-dom';
+import { ButtonContainer } from '../Video/styles';
 
 function CadastroCategoria() {
   const InitialValues = {
@@ -51,6 +53,20 @@ function CadastroCategoria() {
           value={values.titulo}
           onChange={handleChange}
         />
+        <FormField
+          label="Subtitulo"
+          type="text"
+          name="subtitulo"
+          value={values.link_extra}
+          onChange={handleChange}
+        />
+        <FormField
+          label="Link do subtitulo"
+          type="text"
+          name="link-subtitulo"
+          value={values.link_extra}
+          onChange={handleChange}
+        />
 
         <FormField
           label="Descrição"
@@ -67,8 +83,12 @@ function CadastroCategoria() {
           value={values.cor}
           onChange={handleChange}
         />
-
-        <Button>Cadastrar</Button>
+        <ButtonContainer>
+          <Button type="submit">Cadastrar</Button>
+          <Link to="/cadastro/Video">
+            <Button>Cadastrar vídeo</Button>
+          </Link>
+        </ButtonContainer>
       </form>
 
       <ul>
