@@ -35,15 +35,6 @@
         "text": "Formação de Jogos na Alura",
         "url": "https://www.alura.com.br/cursos-online-front-end"
       }
-    },
-    {
-      "titulo": "Test 01",
-      "cor": "#05240d",
-      "link_extra": {
-        "text": "Testando ",
-        "url": "https://github.com/Marcio-Tiene/vuttr"
-      },
-      "id": 6
     }
   ],
   "videos": [
@@ -196,12 +187,6 @@
       "url": "https://www.youtube.com/watch?v=rHANBi7E2cI",
       "categoriaId": 1,
       "id": 25
-    },
-    {
-      "titulo": "Test 01",
-      "url": "https://www.youtube.com/watch?v=jS-1aTrJFes",
-      "categoriaId": 6,
-      "id": 26
     }
   ]
 }
