@@ -13,7 +13,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.4",
     "react-slick": "^0.27.1",
     "styled-components": "^5.1.1"
   },
@@ -29,6 +29,7 @@
     "dev": "concurrently \"react-scripts start\" \"npm run server\"",
     "start": "npm run server",
     "build": "react-scripts build",
+    "dev:front": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

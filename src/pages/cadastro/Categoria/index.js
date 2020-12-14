@@ -1,51 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 
+import categoriasRepository from '../../../repositories/categorias';
+import { Link } from 'react-router-dom';
+import { ButtonContainer } from '../Video/styles';
+
 function CadastroCategoria() {
   const InitialValues = {
-    nome: '',
-    descricao: '',
+    titulo: '',
+
     cor: '#000000',
+    link_extra: {
+      text: '',
+      url: '',
+    },
   };
-  const [categorias, setCategorias] = useState([]);
+
   const [values, setValues] = useState(InitialValues);
-
-  function setValue(key, value) {
-    // key: nome, descricao, bla, bli
-    setValues({
-      ...values,
-      [key]: value, // nome: 'value'
-    });
-  }
-
-  function handleChange(event) {
-    setValue(event.target.getAttribute('name'), event.target.value);
-  }
-
-  // ============
-
-  useEffect(() => {
-    // colocar a url do hiroko aqui
-    const URL = window.location.href.includes('localhost')
-      ? 'http://localhost:8080/categorias'
-      : 'https://marciotflix.herokuapp.com/categorias';
-    fetch(URL).then(async (respostaDoServer) => {
-      const resposta = await respostaDoServer.json();
-      setCategorias([...resposta]);
-    });
-  }, []);
 
   return (
     <PageDefault>
-      <h1>Cadastro de Categoria: {values.nome}</h1>
+      <h1>Cadastro de Categoria:</h1>
 
       <form
-        onSubmit={function handleSubmit(event) {
+        onSubmit={async function handleSubmit(event) {
           event.preventDefault();
 
-          setCategorias([...categorias, values]);
+          await categoriasRepository.create(values);
+          alert(`${values.titulo} cadastrado com sucesso`);
 
           setValues(InitialValues);
         }}
@@ -53,17 +37,35 @@ function CadastroCategoria() {
         <FormField
           label="Nome da Categoria"
           type="text"
-          name="nome"
-          value={values.nome}
-          onChange={handleChange}
+          name="titulo"
+          value={values.titulo}
+          onChange={(event) => {
+            setValues({ ...values, titulo: event.target.value });
+          }}
         />
-
         <FormField
-          label="Descrição"
-          type="????"
-          name="descricao"
-          value={values.descricao}
-          onChange={handleChange}
+          label="Subtitulo"
+          type="text"
+          name="subtitulo"
+          value={values.link_extra.text}
+          onChange={(event) => {
+            setValues({
+              ...values,
+              link_extra: { ...values.link_extra, text: event.target.value },
+            });
+          }}
+        />
+        <FormField
+          label="Link do subtitulo"
+          type="text"
+          name="link-subtitulo"
+          value={values.link_extra.url}
+          onChange={(event) =>
+            setValues({
+              ...values,
+              link_extra: { ...values.link_extra, url: event.target.value },
+            })
+          }
         />
 
         <FormField
@@ -71,17 +73,17 @@ function CadastroCategoria() {
           type="color"
           name="cor"
           value={values.cor}
-          onChange={handleChange}
+          onChange={(event) => {
+            setValues({ ...values, cor: event.target.value });
+          }}
         />
-
-        <Button>Cadastrar</Button>
+        <ButtonContainer>
+          <Button type="submit">Cadastrar</Button>
+          <Link to="/cadastro/Video">
+            <Button>Cadastrar vídeo</Button>
+          </Link>
+        </ButtonContainer>
       </form>
-
-      <ul>
-        {categorias.map((categoria, indice) => {
-          return <li key={`${categoria}${indice}`}>{categoria.titulo}</li>;
-        })}
-      </ul>
     </PageDefault>
   );
 }

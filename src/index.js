@@ -14,9 +14,11 @@ ReactDOM.render(
       <Route path="/" component={Home} exact />
       <Route path="/cadastro/Video" component={CadastroVideo} exact />
       <Route path="/cadastro/Categoria" component={CadastroCategoria} exact />
+
       <Route component={Error404} />
     </Switch>
   </BrowserRouter>,
+
   document.getElementById('root')
 );
 
