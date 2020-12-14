@@ -23,6 +23,7 @@ function Home() {
     LoadAll();
   }, []);
   console.log(dadosIniciais);
+  console.log(process.env.REACT_APP_API_KEY);
   return (
     <PageDefault paddingAll={0}>
       <Menu>
@@ -49,7 +50,10 @@ function Home() {
           );
         }
         return (
-          <Carousel key={categoria.id + categoria.name} category={categoria} />
+          <Carousel
+            key={`${categoria.id}  ${categoria.name}`}
+            category={categoria}
+          />
         );
       })}
     </PageDefault>

@@ -1,6 +1,5 @@
-const URL = `https://marciotflix.herokuapp.com`;
-//  window.location.href.includes('localhost')
-//   ? 'http://localhost:8080'
-//   :
+const URL = window.location.href.includes('localhost')
+  ? 'http://localhost:8080'
+  : process.env.REACT_APP_API_KEY;
 
 export default { URL };

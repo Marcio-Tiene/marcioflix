@@ -32,12 +32,12 @@ function CadastroVideo() {
           const categoriaEscolhida = categorias.find((categoria) => {
             return categoria.titulo === values.categoria;
           });
-          console.log(categoriaEscolhida);
+          console.log(categoriaEscolhida.id);
 
           VideoRepository.create({
             titulo: values.titulo,
             url: values.url,
-            categoriaId: 1,
+            categoriaId: categoriaEscolhida.id,
           }).then(() => {
             history.push('/');
           });
@@ -58,10 +58,10 @@ function CadastroVideo() {
         />
 
         <FormField
-          label="Categioria"
+          label="Categoria"
           name="categoria"
           type="datalist"
-          value={values.categora}
+          value={values.categoria}
           onChange={handleChange}
           suggestions={categoryTitles}
         />
